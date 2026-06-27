@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from django.utils import timezone
 from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import action
@@ -30,10 +28,7 @@ from .serializers import (
 )
 
 
-# --- HTML Placeholder Web View ---
-def home_stub(request):
-    """A placeholder home view for the Skill Micro-Courses Hub."""
-    return HttpResponse("Welcome to the Skill Micro-Courses Hub MVP REST API! Navigate to /api/ for REST endpoints.")
+# --- REST API ViewSets ---
 
 
 # --- REST API ViewSets ---

@@ -36,6 +36,7 @@ class LessonDetailSerializer(serializers.ModelSerializer):
     Detailed serializer revealing full lesson content, video URL, and whether it has an associated quiz.
     """
     has_quiz = serializers.SerializerMethodField()
+    quiz_id = serializers.SerializerMethodField()
 
     class Meta:
         model = Lesson
@@ -47,11 +48,16 @@ class LessonDetailSerializer(serializers.ModelSerializer):
             'video_url', 
             'duration_seconds', 
             'sort_order', 
-            'has_quiz'
+            'has_quiz',
+            'quiz_id'
         ]
 
     def get_has_quiz(self, obj):
         return hasattr(obj, 'quiz')
+
+    def get_quiz_id(self, obj):
+        return obj.quiz.id if hasattr(obj, 'quiz') else None
+
 
 
 class CourseSerializer(serializers.ModelSerializer):

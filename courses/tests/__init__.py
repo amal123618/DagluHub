@@ -1,0 +1,1 @@
+# Django courses tests package

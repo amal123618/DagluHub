@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
+from . import auth_views
 
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
@@ -16,7 +17,9 @@ app_name = 'courses'
 urlpatterns = [
     # Include all API viewset URLs under the api/ prefix
     path('api/', include(router.urls)),
-    
-    # HTML placeholder home page
-    path('', views.home_stub, name='home'),
+
+    # Authentication endpoints
+    path('api/auth/login/',  auth_views.login_view,  name='auth-login'),
+    path('api/auth/logout/', auth_views.logout_view, name='auth-logout'),
+    path('api/auth/me/',     auth_views.me_view,     name='auth-me'),
 ]
